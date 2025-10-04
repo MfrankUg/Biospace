@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { Publication } from '@/lib/types';
@@ -142,10 +143,12 @@ export function ExplorerView({ publications, organisms, topics }: ExplorerViewPr
 
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle>
-            {filteredPublications.length} Publication
-            {filteredPublications.length !== 1 ? 's' : ''} Found
-          </CardTitle>
+          <div>
+            <CardTitle>
+              {filteredPublications.length} Publication
+              {filteredPublications.length !== 1 ? 's' : ''} Found
+            </CardTitle>
+          </div>
           <Button onClick={handleGenerateSummary} disabled={isPending}>
             {isPending ? (
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
