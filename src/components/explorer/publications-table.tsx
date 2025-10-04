@@ -35,17 +35,17 @@ export function PublicationsTable({ publications }: PublicationsTableProps) {
 
   return (
     <div className="border rounded-lg">
-      <Accordion type="single" collapsible className="w-full">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[50%]">Title</TableHead>
-              <TableHead>Organism</TableHead>
-              <TableHead>Topic</TableHead>
-              <TableHead className="text-right w-[150px]">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[50%]">Title</TableHead>
+            <TableHead>Organism</TableHead>
+            <TableHead>Topic</TableHead>
+            <TableHead className="text-right w-[150px]">Actions</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody asChild>
+          <Accordion type="single" collapsible className="w-full">
             {publications.map((pub) => (
               <AccordionItem value={pub.id} asChild key={pub.id}>
                 <>
@@ -94,9 +94,9 @@ export function PublicationsTable({ publications }: PublicationsTableProps) {
                 </>
               </AccordionItem>
             ))}
-          </TableBody>
-        </Table>
-      </Accordion>
+          </Accordion>
+        </TableBody>
+      </Table>
     </div>
   );
 }
