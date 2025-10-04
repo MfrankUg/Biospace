@@ -1,10 +1,11 @@
 'use client';
 
-import {Sheet, SheetContent, SheetTrigger} from '@/components/ui/sheet';
+import {Sheet, SheetContent, SheetTrigger, SheetTitle} from '@/components/ui/sheet';
 import {Button} from '@/components/ui/button';
 import {Menu, Search} from 'lucide-react';
 import {Input} from '../ui/input';
 import {NavContent} from './sidebar';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
 export function Header() {
   return (
@@ -17,6 +18,9 @@ export function Header() {
           </Button>
         </SheetTrigger>
         <SheetContent side="left" className="flex flex-col p-0">
+          <VisuallyHidden>
+            <SheetTitle>Navigation Menu</SheetTitle>
+          </VisuallyHidden>
           <NavContent />
         </SheetContent>
       </Sheet>
