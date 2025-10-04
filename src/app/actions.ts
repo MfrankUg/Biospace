@@ -2,7 +2,7 @@
 
 import { enhanceResearchExplorerWithGemini } from '@/ai/flows/enhance-research-explorer-with-gemini';
 import { answerSpaceBiologyQueries } from '@/ai/flows/answer-space-biology-queries';
-import { publications } from './lib/data';
+import { publications } from '@/lib/data';
 
 type SearchResult = {
   title: string;
