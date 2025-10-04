@@ -4,28 +4,28 @@
 
 @layer base {
   :root {
-    --background: 205 100% 12%;
-    --foreground: 210 40% 98%;
-    --card: 205 90% 16%;
+    --background: 210 68% 10%; /* Deep Space Blue */
+    --foreground: 210 40% 98%; /* Star White */
+    --card: 212 55% 15%; /* Slightly lighter than background */
     --card-foreground: 210 40% 98%;
-    --popover: 205 100% 12%;
+    --popover: 210 68% 10%;
     --popover-foreground: 210 40% 98%;
-    --primary: 195 100% 50%;
-    --primary-foreground: 205 100% 12%;
-    --secondary: 205 50% 30%;
-    --secondary-foreground: 195 100% 50%;
-    --muted: 205 50% 20%;
+    --primary: 255 52% 52%; /* Cosmic Purple */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 326 83% 61%; /* Nebula Pink */
+    --secondary-foreground: 210 40% 98%;
+    --muted: 212 55% 20%;
     --muted-foreground: 210 40% 60%;
-    --accent: 195 100% 50%;
-    --accent-foreground: 205 100% 12%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 205 50% 30%;
-    --input: 205 50% 30%;
-    --ring: 195 100% 50%;
-    --chart-1: 195 100% 50%;
-    --chart-2: 210 100% 60%;
-    --chart-3: 180 80% 50%;
+    --accent: 212 55% 25%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 212 55% 20%;
+    --input: 212 55% 20%;
+    --ring: 255 52% 52%;
+    --chart-1: 255 52% 52%;
+    --chart-2: 326 83% 61%;
+    --chart-3: 195 100% 50%;
     --chart-4: 220 90% 70%;
     --chart-5: 200 100% 40%;
     --radius: 0.5rem;
