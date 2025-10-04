@@ -1,3 +1,10 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-banner",
+      "description": "View of the International Space Station orbiting Earth.",
+      "imageUrl": "https://images.unsplash.com/photo-1614314007212-0257d6e2f7d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzcGFjZSUyMHN0YXRpb258ZW58MHx8fHwxNzU5NTIwNTA5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "space station"
+    }
+  ]
 }
