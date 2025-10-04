@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { Publication } from '@/lib/types';
@@ -18,6 +19,7 @@ import {
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { ArrowUpRight } from 'lucide-react';
+import React from 'react';
 
 type PublicationsTableProps = {
   publications: Publication[];
@@ -44,8 +46,9 @@ export function PublicationsTable({ publications }: PublicationsTableProps) {
             <TableHead className="text-right w-[150px]">Actions</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody asChild>
-          <Accordion type="single" collapsible className="w-full">
+
+        <Accordion type="single" collapsible className="w-full" asChild>
+          <TableBody>
             {publications.map((pub) => (
               <AccordionItem value={pub.id} asChild key={pub.id}>
                 <>
@@ -94,8 +97,8 @@ export function PublicationsTable({ publications }: PublicationsTableProps) {
                 </>
               </AccordionItem>
             ))}
-          </Accordion>
-        </TableBody>
+          </TableBody>
+        </Accordion>
       </Table>
     </div>
   );
