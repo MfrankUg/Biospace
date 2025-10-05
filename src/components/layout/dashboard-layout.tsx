@@ -1,5 +1,3 @@
-'use client';
-
 import { Header } from './header';
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
