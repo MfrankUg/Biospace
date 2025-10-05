@@ -1,11 +1,11 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { KnowledgeGraph } from '@/components/graph/knowledge-graph';
+import { publications } from '@/lib/data';
 import { BrainCircuit, Info } from 'lucide-react';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 export default function GraphPage() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="text-center mb-12">
+      <div className="text-center mb-8">
         <div className="inline-block bg-primary/10 p-4 rounded-full mb-4">
           <BrainCircuit className="w-10 h-10 text-primary" />
         </div>
@@ -18,26 +18,25 @@ export default function GraphPage() {
         </p>
       </div>
 
-      <Card className="max-w-4xl mx-auto bg-card/50 backdrop-blur-sm shadow-xl shadow-primary/10">
-        <CardHeader>
-          <CardTitle>Interactive Network</CardTitle>
-          <CardDescription>
-            Click and drag nodes to explore the data relationships.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="aspect-video w-full rounded-lg bg-background flex items-center justify-center p-8 border border-dashed border-primary/20">
-             <Alert className="max-w-md bg-background/80">
-              <Info className="h-4 w-4" />
-              <AlertTitle>Feature Under Development</AlertTitle>
-              <AlertDescription>
-                The interactive Knowledge Graph is coming soon. Stay tuned for a
-                new way to visualize connections in space biology research!
-              </AlertDescription>
-            </Alert>
+      <div className="w-full h-[60vh] rounded-lg bg-background p-0 border border-primary/20 shadow-xl shadow-primary/10">
+        <KnowledgeGraph publications={publications} />
+      </div>
+       <div className="flex justify-center mt-4">
+          <div className="flex items-center gap-4 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-secondary" />
+              <span>Publication</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-blue-400" />
+              <span>Topic</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-purple-400" />
+              <span>Organism</span>
+            </div>
           </div>
-        </CardContent>
-      </Card>
+        </div>
     </div>
   );
 }
