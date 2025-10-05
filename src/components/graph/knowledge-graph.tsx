@@ -8,7 +8,7 @@ import ReactFlow, {
   type Node,
   type Edge,
 } from 'reactflow';
-import 'reactflow/dist/style.css';
+import 'reactflow/dist/base.css';
 import type { Publication } from '@/lib/types';
 import { ElkNode } from './elk-node';
 
