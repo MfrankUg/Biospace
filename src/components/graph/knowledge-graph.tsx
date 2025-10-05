@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import ReactFlow, {
   Controls,
   Background,
@@ -11,6 +11,7 @@ import ReactFlow, {
 import 'reactflow/dist/base.css';
 import type { Publication } from '@/lib/types';
 import { ElkNode } from './elk-node';
+import ELK, { type ElkNode as ElkLayoutNode, type LayoutOptions } from 'elkjs/lib/elk.bundled.js';
 
 type KnowledgeGraphProps = {
   publications: Publication[];
@@ -20,8 +21,47 @@ const nodeTypes = {
   elk: ElkNode,
 };
 
+const elk = new ELK();
+
+const elkLayoutOptions: LayoutOptions = {
+  'elk.algorithm': 'layered',
+  'elk.direction': 'RIGHT',
+  'elk.layered.spacing.nodeNodeBetweenLayers': '100',
+  'elk.spacing.nodeNode': '80',
+};
+
+
+const getLayoutedElements = (nodes: Node[], edges: Edge[], options: LayoutOptions): Promise<{ nodes: Node[], edges: Edge[] }> => {
+  const graph: ElkLayoutNode = {
+    id: 'root',
+    layoutOptions: options,
+    children: nodes.map((node) => ({
+      ...node,
+      width: node.style?.width as number || 180,
+      height: node.style?.height as number || 50,
+    })),
+    edges: edges.map(edge => ({...edge, sources: [edge.source], targets: [edge.target]})),
+  };
+
+  return elk
+    .layout(graph)
+    .then((layoutedGraph) => ({
+      nodes: layoutedGraph.children?.map((node) => ({
+        ...node,
+        // React Flow expects a position property on the node object
+        // which contains the x and y coordinates.
+        position: { x: node.x, y: node.y },
+      })) as Node[],
+
+      edges: layoutedGraph.edges as Edge[],
+    }))
+    .catch(console.error) as Promise<{ nodes: Node[], edges: Edge[] }>;
+};
+
 export function KnowledgeGraph({ publications }: KnowledgeGraphProps) {
-  const { nodes, edges } = useMemo(() => {
+  const [layoutedElements, setLayoutedElements] = useState<{ nodes: Node[], edges: Edge[] } | null>(null);
+
+  useLayoutEffect(() => {
     const publicationNodes: Node[] = [];
     const topicNodes = new Map<string, Node>();
     const organismNodes = new Map<string, Node>();
@@ -40,6 +80,8 @@ export function KnowledgeGraph({ publications }: KnowledgeGraphProps) {
             backgroundColor: 'hsl(var(--secondary))', 
             color: 'hsl(var(--secondary-foreground))',
             width: 180,
+            height: 50,
+            textAlign: 'center' as const,
         },
       });
 
@@ -50,7 +92,7 @@ export function KnowledgeGraph({ publications }: KnowledgeGraphProps) {
           data: { label: pub.topic },
           position,
           type: 'elk',
-          style: { backgroundColor: 'rgb(96 165 250)', color: 'white', width: 120 },
+          style: { backgroundColor: 'rgb(96 165 250)', color: 'white', width: 120, height: 50 },
         });
       }
 
@@ -71,7 +113,7 @@ export function KnowledgeGraph({ publications }: KnowledgeGraphProps) {
           data: { label: pub.organism },
           position,
           type: 'elk',
-          style: { backgroundColor: 'rgb(192 132 252)', color: 'white', width: 120 },
+          style: { backgroundColor: 'rgb(192 132 252)', color: 'white', width: 120, height: 50 },
         });
       }
       
@@ -92,13 +134,18 @@ export function KnowledgeGraph({ publications }: KnowledgeGraphProps) {
       ...Array.from(organismNodes.values()),
     ];
 
-    return { nodes: allNodes, edges };
+    getLayoutedElements(allNodes, edges, elkLayoutOptions).then(setLayoutedElements);
+
   }, [publications]);
+
+  if (!layoutedElements) {
+    return <div className="flex items-center justify-center h-full">Loading...</div>;
+  }
 
   return (
     <ReactFlow
-      nodes={nodes}
-      edges={edges}
+      nodes={layoutedElements.nodes}
+      edges={layoutedElements.edges}
       nodeTypes={nodeTypes}
       fitView
       className="bg-background"
