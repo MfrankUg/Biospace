@@ -1,36 +1,40 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Users, Rocket, Database, Cpu } from 'lucide-react';
-import Image from 'next/image';
+import { Users, Rocket, Database, Cpu, Milestone } from 'lucide-react';
 
 export default function AboutPage() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-primary">About BioSpace Explorer</h1>
-        <p className="mt-2 text-lg text-muted-foreground max-w-3xl mx-auto">
-          Bridging data science and space biology to reveal how life adapts beyond Earth.
-        </p>
+      <div className="relative text-center mb-16 p-8 rounded-lg overflow-hidden bg-gradient-to-r from-primary/10 via-background to-secondary/10">
+        <div className="absolute inset-0 bg-[url(/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+        <div className="relative">
+          <h1 className="text-4xl md:text-5xl font-bold font-headline text-primary drop-shadow-lg">
+            About SpaceBio Explorer
+          </h1>
+          <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+            Bridging data science and space biology to reveal how life adapts beyond Earth.
+          </p>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-        <Card className="shadow-lg shadow-primary/10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <Card className="shadow-lg shadow-primary/20 backdrop-blur-sm bg-card/60">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Rocket className="text-primary" />
+            <CardTitle className="flex items-center gap-3 text-primary">
+              <Rocket size={24} />
               The Project
             </CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
-              BioSpace Explorer is a space biology knowledge engine created for the NASA Space Apps Challenge. Our goal is to make NASA’s vast bioscience research data more accessible and understandable to scientists, students, and space enthusiasts alike. By leveraging AI, we transform complex publications into digestible summaries, interactive charts, and conversational insights.
+              SpaceBio Explorer is a space biology knowledge engine created for the NASA Space Apps Challenge. Our goal is to make NASA’s vast bioscience research data more accessible and understandable to scientists, students, and space enthusiasts alike. By leveraging AI, we transform complex publications into digestible summaries, interactive charts, and conversational insights.
             </p>
           </CardContent>
         </Card>
 
-        <Card className="shadow-lg shadow-primary/10">
+        <Card className="shadow-lg shadow-secondary/20 backdrop-blur-sm bg-card/60">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Users className="text-primary" />
+            <CardTitle className="flex items-center gap-3 text-secondary">
+              <Users size={24} />
               The Team: Matrix Bubbies
             </CardTitle>
           </CardHeader>
@@ -40,37 +44,37 @@ export default function AboutPage() {
             </p>
           </CardContent>
         </Card>
-        
-        <Card className="shadow-lg shadow-primary/10">
+
+        <Card className="shadow-lg shadow-primary/20 backdrop-blur-sm bg-card/60">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Database className="text-primary" />
+            <CardTitle className="flex items-center gap-3 text-primary">
+              <Database size={24} />
               The Data
             </CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
-              This project is powered by the NASA Space Biology Program's publication dataset, containing hundreds of research papers funded by the agency. The data provides a window into decades of biological experiments conducted in space, from studies on the ISS to missions like Bion-M1.
+              This project is powered by the NASA Space Biology Program's publication dataset, containing hundreds of research papers. The data provides a window into decades of biological experiments conducted in space, from studies on the ISS to missions like Bion-M1.
             </p>
           </CardContent>
         </Card>
 
-        <Card className="shadow-lg shadow-primary/10">
+        <Card className="shadow-lg shadow-secondary/20 backdrop-blur-sm bg-card/60">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Cpu className="text-primary" />
+            <CardTitle className="flex items-center gap-3 text-secondary">
+              <Cpu size={24} />
               The Technology
             </CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
-              BioSpace Explorer is built with a modern tech stack including Next.js, Tailwind CSS, and Firebase. The core AI capabilities for summarization, tagging, and question-answering are powered by Google's Gemini API, integrated via Firebase AI Studio and Genkit.
+              SpaceBio Explorer is built with a modern tech stack including Next.js, Tailwind CSS, and Firebase. The core AI capabilities for summarization, tagging, and question-answering are powered by Google's Gemini API, integrated via Firebase AI Studio and Genkit.
             </p>
           </CardContent>
         </Card>
       </div>
 
-       <div className="mt-16 text-center">
+       <div className="text-center">
         <blockquote className="text-xl italic text-foreground/80 max-w-2xl mx-auto">
         “To confine our attention to terrestrial matters would be to limit the human spirit.”
         </blockquote>
